@@ -80,5 +80,4 @@ namespace ExpenseTracker.Server.Services
             return tokenHandler.WriteToken(token);
         }
     }
-
 }
