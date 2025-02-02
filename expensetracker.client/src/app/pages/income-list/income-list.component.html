@@ -1,0 +1,58 @@
+<div class="container">
+  <h3 class="text-center my-4 pt-4">Income Management</h3>
+
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <input class="form-control" [(ngModel)]="newIncome.amount" type="number" placeholder="Amount" />
+    </div>
+    <div class="col-md-3">
+      <input class="form-control" [(ngModel)]="newIncome.source" placeholder="Source" />
+    </div>
+    <div class="col-md-3">
+      <input class="form-control" [(ngModel)]="newIncome.date" type="date" />
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-primary w-100" (click)="addIncome()">Add</button>
+    </div>
+  </div>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Source</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let income of paginatedIncomes">
+        <td>
+          <input *ngIf="income.isEditing" class="form-control" [(ngModel)]="income.source" />
+          <span *ngIf="!income.isEditing">{{ income.source }}</span>
+        </td>
+        <td>
+          <input *ngIf="income.isEditing" class="form-control" [(ngModel)]="income.amount" type="number" />
+          <span *ngIf="!income.isEditing">{{ income.amount | currency }}</span>
+        </td>
+        <td>
+          <input *ngIf="income.isEditing" class="form-control" [(ngModel)]="income.date" type="date" />
+          <span *ngIf="!income.isEditing">{{ income.date | date:'short' }}</span>
+        </td>
+        <td>
+          <button class="btn btn-primary btn-sm me-2" *ngIf="!income.isEditing" (click)="toggleEdit(income)">Edit</button>
+          <button class="btn btn-primary btn-sm me-2" *ngIf="income.isEditing" (click)="saveIncome(income)">Save</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteIncome(income.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav>
+    <ul class="pagination justify-content-center">
+      <li *ngFor="let page of totalPages" class="page-item" [class.active]="currentPage === page">
+        <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+      </li>
+    </ul>
+  </nav>
+</div>

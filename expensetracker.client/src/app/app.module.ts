@@ -17,6 +17,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { IncomeListComponent } from './pages/income-list/income-list.component';
+import { IncomeFormComponent } from './pages/income-form/income-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    IncomeListComponent,
+    IncomeFormComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

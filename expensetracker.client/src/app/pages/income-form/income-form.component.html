@@ -1,0 +1,22 @@
+<div class="card mt-4 p-4 shadow">
+  <h4 class="text-center">{{ isEditing ? 'Edit Income' : 'Add Income' }}</h4>
+
+  <div class="mb-3">
+    <label class="form-label">Source</label>
+    <input class="form-control" [(ngModel)]="income.source" type="text" placeholder="Income source" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Amount</label>
+    <input class="form-control" [(ngModel)]="income.amount" type="number" placeholder="Amount" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Date</label>
+    <input class="form-control" [(ngModel)]="income.date" type="date" />
+  </div>
+
+  <button class="btn btn-success w-100" (click)="submitIncome()">
+    {{ isEditing ? 'Update' : 'Add' }} Income
+  </button>
+</div>
