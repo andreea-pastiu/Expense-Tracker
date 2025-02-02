@@ -42,6 +42,17 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularClient",
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:4200")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials();
+        });
+});
 builder.Services.AddDbContext<DataBaseContext>(item => item.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDatabase")));
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IncomeService>();
@@ -86,6 +97,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAngularClient");
 
 app.UseAuthorization();
 
